@@ -84,6 +84,7 @@ class Browser():
 
             #initiates nerodia web browser
             options = Options()
+            options.add_argument("--log-level=3")
             browse = webdriver.Chrome(options)
             self.driver = brwse(browser = browse)
 
@@ -114,15 +115,23 @@ class Browser():
             self.driver.goto(link)
 
     def back(self):
+
         #makes sure browser is open and throws exception otherwise
-        if (self.get_browser)
-        self.driver.back()
+        if (self.is_browser_open()):
+            self.driver.back()
+        else:
+            raise BrowserNotOpenError()
 
     def forward(self):
-        self.driver.forward()
+
+        #makes sure browser is open and throws exception otherwise
+        if (self.is_browser_open()):
+            self.driver.forward()
+        else:
+            raise BrowserNotOpenError()
 
     def is_browser_open(self):
-        return (self.get_browser_status == True && self.__browser_status != None)
+        return (self.get_browser_status == True && self.driver != None)
 
     def vpn_start(self):
 
@@ -162,7 +171,7 @@ class Browser():
             time.sleep(random.randint(seconds - 1, seconds + 1))
 
     @staticmethod
-    def clear_console(lines)
+    def clear_console(lines):
         return_string = ""
         return_string += "\n"
         for i in range(lines):
@@ -180,32 +189,6 @@ class Browser():
         pass
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class BrowserNotOpenError(Exception):
 
     def __init__(self, message = "ERROR: Browser not open"):
@@ -217,52 +200,3 @@ class VPNError(Exception):
     def __init__(self, message = "ERROR: VPN is trying to be opened while closed, or vice versa."):
         self.message = message
         super().__init__(self.message)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#haha
