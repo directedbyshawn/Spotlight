@@ -29,7 +29,7 @@ def print_lines(lines):
         Prints lines in the console to space out information.
 
         Parameters:
-            lines (str) : lines of space to be printed in console
+            lines (int) : lines of space to be printed in console
 
     '''
 
