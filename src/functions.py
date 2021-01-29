@@ -22,6 +22,8 @@
 
 '''
 
+import time, random, os, hashlib, six, base64
+
 def print_lines(lines):
 
     '''
@@ -32,6 +34,10 @@ def print_lines(lines):
             lines (int) : lines of space to be printed in console
 
     '''
+
+    #input validation
+    if (type(lines) != int):
+        raise TypeError("ERROR: Only pass ints to the print lines function.")
 
     print("")
 
@@ -52,8 +58,9 @@ def cls():
 
 def sha256(string):
 
-	'''
-        Returns the SHA-256 hash of the string provided.
+    '''
+
+        Returns the SHA-256 hash of the string provided
 
         Parameters:
             string (str) : string to be hashed
@@ -64,23 +71,21 @@ def sha256(string):
     '''
 
     #input validation
-	if (type(string) != str):
-		raise TypeError("ERROR: Type Error.")
+    if (type(string) != str):
+        raise TypeError("ERROR: Only pass strings to hash function.")
 
     #hashs string
-	hash_obj = hashlib.sha256()
-	hash_obj.update(var.encode('utf-8'))
+    hash_obj = hashlib.sha256()
+    hash_obj.update(string.encode("utf-8"))
     hashed_string = hash_obj.hexdigest()
 
-
-	return hashed_string
+    return hashed_string
 
 def only_letters_and_nums(string):
 
     '''
 
-        Returns True or False depending on if the provided
-        string contains only letters and numbers.
+        Determines if a string only contains letters and numbers.
 
         Parameters:
             string (str) : string to be tested
@@ -89,6 +94,10 @@ def only_letters_and_nums(string):
             value (bool) : status of whether the string contains only letters and numbers
 
     '''
+
+    #input validation
+    if (type(string) != str):
+        raise TypeError("ERROR: Only pass strings to the only letters and numbers function.")
 
     #value to determine if there are other characters in the string besides numbers and letters
     value = True
@@ -120,6 +129,10 @@ def encode(key, string):
 
     '''
 
+    #input validation
+    if (type(key) != str or type(string) != str):
+        raise TypeError("ERROR: Only pass strings to encode method.")
+
     #empty list to store encoded characters
     encoded_characters = []
 
@@ -134,6 +147,8 @@ def encode(key, string):
     encoded_string = encoded_string.encode('latin') if six.PY3 else encoded_string
     encoded_string = base64.urlsafe_b64encode(encoded_string).rstrip(b'=')
 
+    #converts byte to string
+    encoded_string = encoded_string.decode("utf-8")
 
     return encoded_string
 
@@ -152,6 +167,13 @@ def decode(key, string):
 
     '''
 
+    #input validation
+    if (type(key) != str or type(string) != str):
+        raise TypeError("ERROR: Only pass strings to decode method.")
+
+    #converts string to byte
+    string = string.encode("utf-8")
+
     #decodes string from latin
     string = base64.urlsafe_b64decode(string + b'===')
     string = string.decode('latin') if six.PY3 else string
@@ -169,3 +191,24 @@ def decode(key, string):
     decoded_string = ''.join(decoded_characters)
 
     return decoded_string
+
+def wait(seconds):
+
+    '''
+
+        Causes the program to stop for a variable amount of time.
+
+        Parameters:
+            seconds (int) : amount of time program should stop for
+
+    '''
+
+    #input validation
+    if (type(seconds) != int):
+        raise TypeError("ERROR: Only pass ints to wait function.")
+
+    #sleeps for 1 seconds if value is less than 2, or the actual value +- 1
+    if (seconds < 2):
+        time.sleep(1)
+    else:
+        time.sleep(random.randint(seconds - 1, seconds + 2))

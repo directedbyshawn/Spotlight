@@ -27,6 +27,7 @@
 
 import time, random, os
 from termcolor import colored
+from src.functions import *
 
 def main():
 
@@ -36,12 +37,12 @@ def main():
 
     time.sleep(3)
 
-    clear_console(5)
+    print_lines(5)
     print("Welcome to Spotlight!")
-    clear_console(1)
+    print_lines(1)
     print("If this is your first time using the software, choose")
     print("option 1 to setup a new user profile.")
-    clear_console(1)
+    print_lines(1)
 
     time.sleep(3)
 
@@ -77,15 +78,6 @@ def main():
 
     #performs operation based on user option
     handle_operation(option)
-
-def clear_console(n):
-    print("")
-    for i in range(n):
-        print("-----------------------------------------------")
-    print("")
-
-def cls():
-    os.system("cls" if os.name=="nt" else "clear")
 
 def handle_operation(option):
     if (option == 1):
