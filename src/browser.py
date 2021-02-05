@@ -38,9 +38,14 @@ class Browser():
         self.__vpn_status = False
         self.__account = account
         self.__email = email
+        self.__user = user
         self.driver = None
-        self.__vpn_email = user.get_vpn_email()
-        self.__vpn_password = user.get_vpn_password()
+        if (user == None):
+            self.__vpn_email = None
+            self.__vpn_password = None
+        else:
+            self.__vpn_email = user.get_vpn_email()
+            self.__vpn_password = user.get_vpn_password()
 
     def get_browser_status(self):
         return self.__browser_status
@@ -75,6 +80,12 @@ class Browser():
 
     def set_account(self, account):
         self.__account = account
+
+    def get_user(self):
+        return self.__user
+
+    def set_user(self, user):
+        self.__user = user
 
     def start(self):
 
@@ -132,7 +143,7 @@ class Browser():
             raise BrowserNotOpenError()
 
     def is_browser_open(self):
-        return (self.get_browser_status == True && self.driver != None)
+        return (self.get_browser_status == True and self.driver != None)
 
     def vpn_start(self):
 
