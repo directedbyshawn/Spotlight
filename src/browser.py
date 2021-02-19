@@ -196,7 +196,7 @@ class Browser():
 
 class BrowserNotOpenError(Exception):
 
-    def __init__(self, message = "ERROR: Browser not open"):
+    def __init__(self, message = "ERROR: Browser not open."):
         self.message = message
         super().__init__(self.message)
 
