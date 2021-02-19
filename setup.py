@@ -42,7 +42,7 @@ def main():
     print_lines(5)
     print("Welcome to the Spotlight Setup")
     print_lines(1)
-    print("To begin, create a username. All of your logins for support")
+    print("To begin, create a username. All of your logins for promotion")
     print("accounts, proxys, vpns etc will be stored under a username")
     print("and password. Therefore whenever you want to run a script, all")
     print("you have to do is sign in with your login. All login information")
@@ -80,9 +80,7 @@ def main():
                 #creates directories used to store login information
                 os.mkdir("credentials/" + username)
                 os.mkdir("credentials/" + username + "/promotion")
-                os.mkdir("credentials/" + username + "/support")
                 os.mkdir("credentials/" + username + "/finder")
-                os.mkdir("credentials/" + username + "/email")
 
                 file = open("credentials/" + username + "/password.txt", "w")
                 file.close()
