@@ -29,7 +29,7 @@ from nerodia.browser import Browser as Brwse
 from nordvpn_connect import initialize_vpn, get_current_ip, connect_to_server, close_vpn_connection, rotate_VPN
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
-from src.functions import wait, sha256, only_letters_and_nums, encode, decode
+from functions import wait, sha256, only_letters_and_nums, encode, decode
 
 class Browser():
 
