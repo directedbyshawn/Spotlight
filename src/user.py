@@ -29,6 +29,7 @@
 
 import time, random, os
 from functions import *
+from termcolor import colored
 
 class User():
 
@@ -64,6 +65,8 @@ class User():
 
 class UserDoesNotExistError(Exception):
 
-    def __init__(self, message = "ERROR: Name used to create user object cannot be found in credentials file."):
+    colored_message = colored("ERROR: Name used to create user object cannot be found in credentials file.", "red")
+
+    def __init__(self, message = colored_message):
         self.message = message
         super().__init__(self.message)

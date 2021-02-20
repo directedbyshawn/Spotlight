@@ -37,7 +37,7 @@ def print_lines(lines):
 
     #input validation
     if (type(lines) != int):
-        raise TypeError("ERROR: Only pass ints to the print lines function.")
+        raise TypeError(colored("ERROR: Only pass ints to the print lines function.", "red"))
 
     print("")
 
@@ -97,7 +97,7 @@ def only_letters_and_nums(string):
 
     #input validation
     if (type(string) != str):
-        raise TypeError("ERROR: Only pass strings to the only letters and numbers function.")
+        raise TypeError(colored("ERROR: Only pass strings to the only letters and numbers function.", "red"))
 
     #value to determine if there are other characters in the string besides numbers and letters
     value = True
@@ -131,7 +131,7 @@ def encode(key, string):
 
     #input validation
     if (type(key) != str or type(string) != str):
-        raise TypeError("ERROR: Only pass strings to encode method.")
+        raise TypeError(colored("ERROR: Only pass strings to encode method.", "red"))
 
     #empty list to store encoded characters
     encoded_characters = []
@@ -169,7 +169,7 @@ def decode(key, string):
 
     #input validation
     if (type(key) != str or type(string) != str):
-        raise TypeError("ERROR: Only pass strings to decode method.")
+        raise TypeError(colored("ERROR: Only pass strings to decode method.", "red"))
 
     #converts string to byte
     string = string.encode("utf-8")
@@ -205,7 +205,7 @@ def wait(seconds):
 
     #input validation
     if (type(seconds) != int):
-        raise TypeError("ERROR: Only pass ints to wait function.")
+        raise TypeError(colored("ERROR: Only pass ints to wait function.", "red"))
 
     #sleeps for 1 seconds if value is less than 2, or the actual value +- 1
     if (seconds < 2):

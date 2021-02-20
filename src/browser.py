@@ -196,12 +196,16 @@ class Browser():
 
 class BrowserNotOpenError(Exception):
 
-    def __init__(self, message = "ERROR: Browser not open."):
+    colored_message = colored("ERROR: Browser not open.", "red")
+
+    def __init__(self, message = colored_message):
         self.message = message
         super().__init__(self.message)
 
 class VPNError(Exception):
 
-    def __init__(self, message = "ERROR: VPN is trying to be opened while closed, or vice versa."):
+    colored_message = colored("ERROR: VPN is trying to be opened while closed, or vice versa.")
+
+    def __init__(self, message = colored_message):
         self.message = message
         super().__init__(self.message)
