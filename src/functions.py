@@ -23,6 +23,7 @@
 '''
 
 import time, random, os, hashlib, six, base64
+from termcolor import colored 
 
 def print_lines(lines):
 

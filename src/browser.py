@@ -30,6 +30,7 @@ from nordvpn_connect import initialize_vpn, get_current_ip, connect_to_server, c
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 from functions import *
+from termcolor import colored
 
 class Browser():
 
