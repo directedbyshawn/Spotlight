@@ -120,7 +120,7 @@ class Browser():
 
         #makes sure that link is a string, and that the browser is open
         if (type(link) != str):
-            raise TypeError("ERROR: Link must be a string")
+            raise TypeError(colored("ERROR: Link must be a string", "red"))
         elif (not self.is_browser_open()):
             raise BrowserNotOpenError()
         else:
@@ -174,16 +174,6 @@ class Browser():
             close_vpn_connection(settings)
             time.sleep(10)
             rotate_VPN(settings)
-
-    @staticmethod
-    def clear_console(lines):
-        return_string = ""
-        return_string += "\n"
-        for i in range(lines):
-            return_string += "------------------------------------\n"
-        return_string += "\n"
-
-        return return_string
 
     def clear_cache(self):
         #navigate to chrome settings and clear cache and browser history
