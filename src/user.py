@@ -82,22 +82,49 @@ class User():
          if (self.get_login_status()):
              raise AlreadyLoggedInError()
 
-        password_correct = False
-
         #attemps to open file containing password
         try:
             password_file = open((self.__directory_path + "password.txt"), "r")
         except:
-            pass
+            raise PasswordFileNotFoundError()
+
+        #reads hashed password from file
+        hashed_password = password_file.readline()
+
+        password_file.close()
+
+        #hashed password attempted by user
+        hashed_password_attempt = sha256(password)
+
+        good_login = False
+
+        #if the password is correct, user will be logged in
+        if (hashed_password_attempt == hashed_password):
+            good_login = True
+            self.__logged_in = True
+
+        return good_login
+
+    def log_out(self):
+
+        #determines if user is already logged out
+        if (self.__logged_in or self.__password = None):
+            raise AlreadyLoggedOutError()
+
+        
 
 
 
 
 
 
-class PasswordFileNotFound(Exception):
+class PasswordFileNotFoundError(Exception):
 
     colored_message = colored("ERROR: Password file could not be opened.")
+
+    def __init__(self, message = colored_message):
+        self.message = message
+        super().__init__(self.message)
 
 class UserDoesNotExistError(Exception):
 
@@ -110,6 +137,14 @@ class UserDoesNotExistError(Exception):
 class AlreadyLoggedInError(Exception):
 
     colored_message = colored("ERROR: User log in attempt while already logged in.", "red")
+
+    def __init__(self, message = colored_message):
+        self.message = message
+        super().__init__(self.message)
+
+class AlreadyLoggedOutError(Exception):
+
+    colored_message = colored("ERROR: User log out attempt while already logged out.", "red")
 
     def __init__(self, message = colored_message):
         self.message = message

@@ -2,3 +2,4 @@ nerodia==0.14.1
 nordvpn_connect==0.0.7
 termcolor==1.1.0
 six==1.15.0
+undetected-chromedriver==2.1.2

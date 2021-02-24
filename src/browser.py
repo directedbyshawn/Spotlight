@@ -25,6 +25,7 @@
 '''
 
 import time, random, os
+import undetected_chromedriver as uc
 from nerodia.browser import Browser as Brwse
 from nordvpn_connect import initialize_vpn, get_current_ip, connect_to_server, close_vpn_connection, rotate_VPN
 from selenium.webdriver.chrome.options import Options
@@ -95,20 +96,19 @@ class Browser():
             raise BrowserNotOpenError
         else:
 
-            #initiates nerodia web browser
-            options = Options()
-            options.add_argument("--log-level=3")
-            browse = webdriver.Chrome(options)
-            self.driver = brwse(browser = browse)
+            #initiates web browser
+            self.driver = uc.Chrome()
 
             #sets browser status to true, indicating that the browser is active
             self.__set_browser_status(True)
+
+            print(self.__browser_status)
 
     def stop(self):
 
         #throws an exception if the browser is not open
         if (not self.is_browser_open()):
-            raise BrowserNotOpenError
+            raise BrowserNotOpenError()
         else:
 
             #closes nerodia web browser
@@ -125,23 +125,30 @@ class Browser():
         elif (not self.is_browser_open()):
             raise BrowserNotOpenError()
         else:
-            self.driver.goto(link)
+            self.driver.get(link)
 
     def back(self):
 
+        '''
         #makes sure browser is open and throws exception otherwise
         if (self.is_browser_open()):
             self.driver.back()
         else:
             raise BrowserNotOpenError()
 
+        '''
+
     def forward(self):
+
+        '''
 
         #makes sure browser is open and throws exception otherwise
         if (self.is_browser_open()):
             self.driver.forward()
         else:
             raise BrowserNotOpenError()
+
+        '''
 
     def is_browser_open(self):
         return (self.get_browser_status == True and self.driver != None)
