@@ -40,6 +40,7 @@ class User():
             raise UserDoesNotExistError()
         else:
             self.__name = name
+            self.__directory_path = "../credentials/" + name + "/"
         self.__password = None
         self.__vpn_email = None
         self.__vpn_password = None
@@ -57,15 +58,58 @@ class User():
     def __set_password(self, password):
         self.__password = password
 
-    def __get_vpn_password(self):
+    def get_vpn_password(self):
         return self.__vpn_password
 
     def __set_vpn_password(self, vpn_password):
         self.__vpn_password = vpn_password
 
+    def get_vpn_email(self):
+        return self.__vpn_email
+
+    def __set_vpn_email(self, email):
+        self.__vpn_email = email
+
+    def get_login_status(self):
+        return self.__logged_in
+
+    def __set_login_status(self, status):
+        self.__logged_in = status
+
+    def log_in(self, password):
+
+        #if user is already logged in, exception raised
+         if (self.get_login_status()):
+             raise AlreadyLoggedInError()
+
+        password_correct = False
+
+        #attemps to open file containing password
+        try:
+            password_file = open((self.__directory_path + "password.txt"), "r")
+        except:
+            pass
+
+
+
+
+
+
+class PasswordFileNotFound(Exception):
+
+    colored_message = colored("ERROR: Password file could not be opened.")
+
 class UserDoesNotExistError(Exception):
 
     colored_message = colored("ERROR: Name used to create user object cannot be found in credentials file.", "red")
+
+    def __init__(self, message = colored_message):
+        self.message = message
+        super().__init__(self.message)
+
+class AlreadyLoggedInError(Exception):
+
+    colored_message = colored("ERROR: User log in attempt while already logged in.", "red")
 
     def __init__(self, message = colored_message):
         self.message = message
